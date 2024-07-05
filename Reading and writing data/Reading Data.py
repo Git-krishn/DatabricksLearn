@@ -52,3 +52,39 @@ countries_df = spark.read.csv("/FileStore/tables/countries.csv", header = True, 
 # COMMAND ----------
 
 countries_df = spark.read.options(header =True).schema(countries_schema).csv("/FileStore/tables/countries.csv")
+
+# COMMAND ----------
+
+countries_sl_json = spark.read.json("/FileStore/tables/countries_single_line.json")
+
+# COMMAND ----------
+
+display(countries_sl_json)
+
+# COMMAND ----------
+
+countries_ml_json = spark.read.json("dbfs:/FileStore/tables/countries_multi_line.json")
+
+# COMMAND ----------
+
+countries_ml_json.display()
+
+# COMMAND ----------
+
+countries_ml_json= spark.read.options(multiLine=True).json("dbfs:/FileStore/tables/countries_multi_line.json")
+
+# COMMAND ----------
+
+
+
+# COMMAND ----------
+
+countries_ml_json.display()
+
+# COMMAND ----------
+
+countries_txt = spark.read.csv("dbfs:/FileStore/tables/countries.txt", header= True, sep ="\t")
+
+# COMMAND ----------
+
+
